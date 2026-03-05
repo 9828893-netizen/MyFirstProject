@@ -43,9 +43,10 @@
         </a-marker>
 
         <a-marker type='barcode' value='3' sound-handler>
-            <a-image src="#author-img" rotation="-90 0 0" width="1.5" height="1.5"></a-image>
-            <a-entity sound="src: #author-audio; autoplay: false;"></a-entity>
-        </a-marker>
+    <a-plane color="white" rotation="-90 0 0" width="1.1" height="1.1" position="0 -0.01 0"></a-plane>
+    <a-image src="#device-img" rotation="-90 0 0" width="1" height="1"></a-image>
+    <a-entity sound="src: #device-audio"></a-entity>
+</a-marker>
 
         <a-entity camera></a-entity>
     </a-scene>
