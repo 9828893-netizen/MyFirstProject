@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <script>
+        // Скрипт, щоб звук вмикався сам при появі маркера
+        AFRAME.registerComponent('sound-handler', {
+            init: function () {
+                this.el.addEventListener('markerFound', () => {
+                    let s = this.el.querySelector('[sound]');
+                    if(s) s.components.sound.playSound();
+                });
+                this.el.addEventListener('markerLost', () => {
+                    let s = this.el.querySelector('[sound]');
+                    if(s) s.components.sound.stopSound();
+                });
+            }
+        });
+    </script>
 </head>
 <body style="margin: 0px; overflow: hidden;">
     <a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
@@ -16,19 +32,19 @@
             <audio id="author-audio" src="author.mp3" preload="auto"></audio>
         </a-assets>
 
-        <a-marker type='barcode' value='1'>
-            <a-image src="#student-img" rotation="-90 0 0"></a-image>
-            <a-entity sound="src: #student-audio; autoplay: false; on: markerFound"></a-entity>
+        <a-marker type='barcode' value='1' sound-handler>
+            <a-image src="#student-img" rotation="-90 0 0" width="1.5" height="1.5"></a-image>
+            <a-entity sound="src: #student-audio; autoplay: false;"></a-entity>
         </a-marker>
 
-        <a-marker type='barcode' value='2'>
-            <a-image src="#device-img" rotation="-90 0 0"></a-image>
-            <a-entity sound="src: #device-audio; autoplay: false; on: markerFound"></a-entity>
+        <a-marker type='barcode' value='2' sound-handler>
+            <a-image src="#device-img" rotation="-90 0 0" width="1.5" height="1.5"></a-image>
+            <a-entity sound="src: #device-audio; autoplay: false;"></a-entity>
         </a-marker>
 
-        <a-marker type='barcode' value='3'>
-            <a-image src="#author-img" rotation="-90 0 0"></a-image>
-            <a-entity sound="src: #author-audio; autoplay: false; on: markerFound"></a-entity>
+        <a-marker type='barcode' value='3' sound-handler>
+            <a-image src="#author-img" rotation="-90 0 0" width="1.5" height="1.5"></a-image>
+            <a-entity sound="src: #author-audio; autoplay: false;"></a-entity>
         </a-marker>
 
         <a-entity camera></a-entity>
