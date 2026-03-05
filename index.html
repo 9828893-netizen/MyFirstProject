@@ -8,21 +8,27 @@
     <a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
         
         <a-assets>
-            <img id="student" src="student.jpg">
-            <img id="device" src="device.jpg">
-            <img id="author" src="author.jpg">
+            <img id="student-img" src="student.jpg">
+            <img id="device-img" src="device.jpg">
+            <img id="author-img" src="author.jpg">
+            <audio id="student-audio" src="student.mp3" preload="auto"></audio>
+            <audio id="device-audio" src="device.mp3" preload="auto"></audio>
+            <audio id="author-audio" src="author.mp3" preload="auto"></audio>
         </a-assets>
 
         <a-marker type='barcode' value='1'>
-            <a-image src="#student" rotation="-90 0 0" width="1" height="1"></a-image>
+            <a-image src="#student-img" rotation="-90 0 0"></a-image>
+            <a-entity sound="src: #student-audio; autoplay: false; on: markerFound"></a-entity>
         </a-marker>
 
         <a-marker type='barcode' value='2'>
-            <a-image src="#device" rotation="-90 0 0" width="1" height="1"></a-image>
+            <a-image src="#device-img" rotation="-90 0 0"></a-image>
+            <a-entity sound="src: #device-audio; autoplay: false; on: markerFound"></a-entity>
         </a-marker>
 
         <a-marker type='barcode' value='3'>
-            <a-image src="#author" rotation="-90 0 0" width="1" height="1"></a-image>
+            <a-image src="#author-img" rotation="-90 0 0"></a-image>
+            <a-entity sound="src: #author-audio; autoplay: false; on: markerFound"></a-entity>
         </a-marker>
 
         <a-entity camera></a-entity>
