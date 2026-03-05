@@ -1,40 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
 </head>
+<body style="margin: 0px; overflow: hidden;">
+    <a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+        
+        <a-assets>
+            <img id="student" src="student.jpg">
+            <img id="device" src="device.jpg">
+            <img id="author" src="author.jpg">
+        </a-assets>
 
-<body style="margin:0px; overflow:hidden;">
+        <a-marker type='barcode' value='1'>
+            <a-image src="#student" rotation="-90 0 0" width="1" height="1"></a-image>
+        </a-marker>
 
-<a-scene embedded arjs>
+        <a-marker type='barcode' value='2'>
+            <a-image src="#device" rotation="-90 0 0" width="1" height="1"></a-image>
+        </a-marker>
 
-<a-assets>
-<img id="student" src="student.jpg">
-<img id="author" src="author.jpg">
-<img id="device" src="device.jpg">
+        <a-marker type='barcode' value='3'>
+            <a-image src="#author" rotation="-90 0 0" width="1" height="1"></a-image>
+        </a-marker>
 
-<audio id="studentAudio" src="student.mp3"></audio>
-<audio id="authorAudio" src="author.mp3"></audio>
-<audio id="deviceAudio" src="device.mp3"></audio>
-</a-assets>
-
-<a-marker preset="hiro">
-<a-image src="#student" width="2" height="2"></a-image>
-</a-marker>
-
-<a-marker preset="kanji">
-<a-image src="#author" width="2" height="2"></a-image>
-</a-marker>
-
-<a-marker type="barcode" value="5">
-<a-image src="#device" width="2" height="2"></a-image>
-</a-marker>
-
-<a-entity camera></a-entity>
-
-</a-scene>
-
+        <a-entity camera></a-entity>
+    </a-scene>
 </body>
 </html>
- 
